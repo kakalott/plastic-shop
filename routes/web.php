@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-Route::get('/', [HomeController::class, 'index']);
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CartController;
+Route::get('/', [ShopController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -19,4 +22,11 @@ Route::get('/admin/products', [ProductController::class, 'index']); // Xem danh 
 Route::delete('/admin/products/{id}', [ProductController::class, 'destroy']); // Xóa
 Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit']); // Mở form sửa
 Route::put('/admin/products/{id}', [ProductController::class, 'update']); // Bấm lưu đè
+// Quản lý Đơn hàng
+    Route::get('/admin/orders', [OrderController::class, 'index']); // Xem danh sách
+    Route::put('/admin/orders/{id}/status', [OrderController::class, 'updateStatus']); // Đổi trạng thái
 });
+// Đường dẫn thêm sản phẩm vào giỏ hàng
+Route::get('/cart/add/{id}', [CartController::class, 'add']);
+// Xem chi tiết Giỏ hàng
+Route::get('/cart', [CartController::class, 'index']);

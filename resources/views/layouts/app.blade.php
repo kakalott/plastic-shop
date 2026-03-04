@@ -8,7 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    @if(session('success'))
+        <div class="alert alert-success fw-bold text-center">
+            {{ session('success') }}
+        </div>
+    @endif
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -30,21 +34,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link fw-bold" href="/">🏠 Cửa hàng</a>
+                            <a class="nav-link fw-bold" href="/">🏠 Trang Chủ</a>
                         </li>
 
-                        @auth
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="/admin/products">Quản lý sản phẩm</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">📦 Đơn Hàng (Chưa làm)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/users">👥 Khách hàng </a>
-                        </li>
-                        @endauth
+                        @if(auth()->check() && auth()->user()->role === 'admin')
+                            <li class="nav-item">
+                                <a class="nav-link text-primary fw-bold" href="/admin/products">📦 Quản Lý Kho Đồ Nhựa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-primary fw-bold" href="/admin/orders">🧾 Quản Lý Đơn Hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-primary fw-bold" href="/admin/users">👥 Quản Lý Tài Khoản</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link text-success fw-bold" href="/cart">🛒 Giỏ Hàng <span class="badge bg-danger rounded-pill">{{ session('cart') ? count(session('cart')) : 0 }}</span></a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

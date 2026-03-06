@@ -30,14 +30,28 @@
                                         </td>
                                         <td class="text-start fw-bold text-primary">{{ $details['name'] }}</td>
                                         <td>{{ number_format($details['price'], 0, ',', '.') }}đ</td>
+                                        
                                         <td>
-                                            <input type="number" value="{{ $details['quantity'] }}" class="form-control form-control-sm mx-auto" style="width: 70px;" min="1">
+                                            <form action="/cart/update" method="POST" class="d-flex align-items-center justify-content-center">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="id" value="{{ $id }}">
+                                                <input type="number" name="quantity" value="{{ $details['quantity'] }}" class="form-control form-control-sm text-center me-1" style="width: 70px;" min="1">
+                                                <button type="submit" class="btn btn-sm btn-info text-white" title="Cập nhật">🔄</button>
+                                            </form>
                                         </td>
+                                        
                                         <td class="text-danger fw-bold">
                                             {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}đ
                                         </td>
+                                        
                                         <td>
-                                            <button class="btn btn-sm btn-outline-danger">🗑️</button>
+                                            <form action="/cart/remove" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{ $id }}">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Xóa món này">🗑️</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

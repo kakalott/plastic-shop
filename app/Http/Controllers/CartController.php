@@ -15,6 +15,35 @@ class CartController extends Controller
         
         return view('cart.index', compact('cart'));
     }
+    // Hàm 3: Cập nhật số lượng
+    public function update(Request $request)
+    {
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            
+            // Cập nhật lại số lượng mới cho sản phẩm có id tương ứng
+            $cart[$request->id]["quantity"] = $request->quantity;
+            
+            session()->put('cart', $cart);
+            return back()->with('success', '🔄 Đã cập nhật lại số lượng giỏ hàng!');
+        }
+    }
+
+    // Hàm 4: Xóa 1 món khỏi giỏ
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            
+            // Nếu tìm thấy món này trong giỏ thì dùng hàm unset để hủy nó đi
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            
+            return back()->with('success', '🗑️ Đã xóa sản phẩm khỏi giỏ!');
+        }
+    }
     // Hàm xử lý khi khách bấm nút "Thêm Giỏ"
     public function add($id)
     {
@@ -46,5 +75,6 @@ class CartController extends Controller
 
         // 5. Đá khách về lại trang cũ kèm thông báo
         return back()->with('success', 'Đã nhặt ' . $product->name . ' vào giỏ hàng!');
+        
     }
 }

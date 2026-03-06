@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
 Route::get('/', [ShopController::class, 'index']);
 Auth::routes();
 
@@ -30,3 +31,8 @@ Route::put('/admin/products/{id}', [ProductController::class, 'update']); // B�
 Route::get('/cart/add/{id}', [CartController::class, 'add']);
 // Xem chi tiết Giỏ hàng
 Route::get('/cart', [CartController::class, 'index']);
+// Trang thông tin cá nhân của khách hàng
+    Route::get('/profile', [ProfileController::class, 'index']);
+    // Cập nhật và Xóa sản phẩm trong giỏ
+Route::patch('/cart/update', [CartController::class, 'update']);
+Route::delete('/cart/remove', [CartController::class, 'remove']);

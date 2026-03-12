@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2 class="fw-bold mb-4">📦 Quản Lý Đơn Hàng</h2>
+    <h2 class="fw-bold mb-4"> Quản Lý Đơn Hàng</h2>
 
     @if(session('success'))
         <div class="alert alert-success fw-bold">{{ session('success') }}</div>
@@ -48,7 +48,7 @@
                             </form>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-outline-primary">👁️ Xem chi tiết</a>
+                            <a href="#" class="btn btn-sm btn-outline-primary"> Xem chi tiết</a>
                         </td>
                     </tr>
                     @empty

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm border-warning">
-                <div class="card-header bg-warning text-dark fw-bold">✏️ Sửa Thông Tin Sản Phẩm</div>
+                <div class="card-header bg-warning text-dark fw-bold"> Sửa Thông Tin Sản Phẩm</div>
                 <div class="card-body">
                     
                     <form action="/admin/products/{{ $product->id }}" method="POST">

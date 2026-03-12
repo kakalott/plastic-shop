@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
 Route::get('/', [ShopController::class, 'index']);
 Auth::routes();
 
@@ -36,3 +37,5 @@ Route::get('/cart', [CartController::class, 'index']);
     // Cập nhật và Xóa sản phẩm trong giỏ
 Route::patch('/cart/update', [CartController::class, 'update']);
 Route::delete('/cart/remove', [CartController::class, 'remove']);
+// Trang Thanh Toán (Checkout)
+Route::get('/checkout', [CheckoutController::class, 'index']);

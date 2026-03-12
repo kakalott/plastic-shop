@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <div class="row mb-4">
         <div class="col-12 text-center bg-primary text-white p-5 rounded shadow-sm">
-            <h1 class="fw-bold">🛒 Tổng Kho Nhựa Gia Dụng</h1>
+            <h1 class="fw-bold"> Tổng Kho Nhựa Gia Dụng</h1>
             <p class="fs-5">Chất lượng cao - Giá tận xưởng - Giao hàng toàn quốc</p>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <div class="col-md-3 mb-4">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-dark text-white fw-bold">
-                    🗂️ Danh Mục Sản Phẩm
+                     Danh Mục Sản Phẩm
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Rổ - Rá Nhựa</a></li>
@@ -26,7 +26,7 @@
 
         <div class="col-md-9">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="fw-bold">🔥 Sản Phẩm Nổi Bật</h4>
+                <h4 class="fw-bold"> Sản Phẩm Nổi Bật</h4>
                 <select class="form-select w-auto">
                     <option>Sắp xếp: Mới nhất</option>
                     <option>Giá: Thấp đến cao</option>

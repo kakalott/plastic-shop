@@ -16,23 +16,27 @@
                      Danh Mục Sản Phẩm
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Rổ - Rá Nhựa</a></li>
-                    <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Tủ Nhựa Đa Năng</a></li>
-                    <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Ghế Nhựa</a></li>
-                    <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Khay Đựng Tài Liệu</a></li>
+                    <li class="list-group-item"><a href="/" class="text-decoration-none text-primary fw-bold">🌟 Tất Cả Sản Phẩm</a></li>
+                    
+                    @foreach($categories as $cat)
+                        <li class="list-group-item">
+                            <a href="#" class="text-decoration-none text-dark">{{ $cat->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
 
         <div class="col-md-9">
+            <form action="/" method="GET" class="mb-4">
+                <div class="input-group shadow-sm">
+                    <input type="text" name="search" class="form-control border-primary form-control-lg" placeholder="🔍 Bạn đang tìm rổ nhựa, tủ, hay hộp đựng thực phẩm?..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary fw-bold px-4">TÌM KIẾM</button>
+                </div>
+            </form>
+            
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="fw-bold"> Sản Phẩm Nổi Bật</h4>
-                <select class="form-select w-auto">
-                    <option>Sắp xếp: Mới nhất</option>
-                    <option>Giá: Thấp đến cao</option>
-                    <option>Giá: Cao xuống thấp</option>
-                </select>
-            </div>
+                
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @forelse($products as $p)

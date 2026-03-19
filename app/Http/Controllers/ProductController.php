@@ -4,29 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product; // Nhúng model Product vào
+use App\Models\Category;
 class ProductController extends Controller
 {
     // Hàm 1: Hiển thị giao diện Form thêm mới
     public function create()
     {
-        return view('products.create');
+        // Lấy toàn bộ danh mục từ Database ra
+        $categories = Category::all();
+        
+        // Ném sang bên giao diện Form
+        return view('products.create', compact('categories'));
     }
     // Hàm 2: Nhận dữ liệu từ Form và lưu vào Database
     public function store(Request $request)
     {
-        // 1. Kiểm tra dữ liệu đầu vào (Validation)
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'wholesale_price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
+            'category_id' => 'required|integer' // Bắt buộc phải chọn danh mục
         ]);
 
-        // 2. Lưu thẳng vào Database TiDB
-        Product::create($request->all());
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'sale_price' => $request->sale_price,
+            'stock_quantity' => $request->stock_quantity,
+            'image' => $request->image,
+            'category_id' => $request->category_id, // Lưu ID danh mục vào DB
+            'description' => $request->description,
+        ]);
 
-        // 3. Chuyển hướng về trang chủ và báo thành công
-        return redirect('/')->with('success', 'Đã thêm sản phẩm đồ nhựa mới thành công!');
+        return redirect('/admin/products')->with('success', '📦 Đã thêm sản phẩm mới thành công!');
     }
     // Bổ sung Hàm 3: Hiển thị danh sách sản phẩm
     public function index()

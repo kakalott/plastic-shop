@@ -30,6 +30,10 @@ Route::put('/admin/products/{id}', [ProductController::class, 'update']); // B�
     // Chỉnh sửa hồ sơ cá nhân
     Route::get('/profile/edit', [ProfileController::class, 'edit']); // Mở form
     Route::put('/profile/update', [ProfileController::class, 'update']); // Bấm lưu đè
+    // Quản lý Danh mục
+    Route::get('/admin/categories', [\App\Http\Controllers\CategoryController::class, 'index']);
+    Route::post('/admin/categories', [\App\Http\Controllers\CategoryController::class, 'store']);
+    Route::delete('/admin/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
 });
 // Đường dẫn thêm sản phẩm vào giỏ hàng
 Route::get('/cart/add/{id}', [CartController::class, 'add']);

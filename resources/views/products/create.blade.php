@@ -15,7 +15,17 @@
                             <label class="form-label">Tên sản phẩm (VD: Ghế nhựa lùn)</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
-
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">🗂️ Phân loại Danh mục <span class="text-danger">*</span></label>
+                            <select name="category_id" class="form-select" required>
+                                <option value="">-- Click để chọn danh mục --</option>
+        
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+        
+                            </select>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Giá bán lẻ (VNĐ)</label>

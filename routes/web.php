@@ -27,6 +27,9 @@ Route::put('/admin/products/{id}', [ProductController::class, 'update']); // B�
 // Quản lý Đơn hàng
     Route::get('/admin/orders', [OrderController::class, 'index']); // Xem danh sách
     Route::put('/admin/orders/{id}/status', [OrderController::class, 'updateStatus']); // Đổi trạng thái
+    // Chỉnh sửa hồ sơ cá nhân
+    Route::get('/profile/edit', [ProfileController::class, 'edit']); // Mở form
+    Route::put('/profile/update', [ProfileController::class, 'update']); // Bấm lưu đè
 });
 // Đường dẫn thêm sản phẩm vào giỏ hàng
 Route::get('/cart/add/{id}', [CartController::class, 'add']);

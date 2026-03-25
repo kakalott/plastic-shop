@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
@@ -16,6 +17,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/products/create', [ProductController::class, 'create']); // Mở form
     Route::post('/admin/products/store', [ProductController::class, 'store']); // Bấm nút Lưu
+        // Quản lý Banner
+    Route::get('/admin/banners', [BannerController::class, 'index'])->name('admin.banners.index');
+    Route::get('/admin/banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
+    Route::post('/admin/banners/store', [BannerController::class, 'store'])->name('admin.banners.store');
+    Route::get('/admin/banners/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
+    Route::put('/admin/banners/{banner}', [BannerController::class, 'update'])->name('admin.banners.update');
+    Route::delete('/admin/banners/{banner}', [BannerController::class, 'destroy'])->name('admin.banners.destroy');
     // Quản lý người dùng
 Route::get('/admin/users', [UserController::class, 'index']);
 Route::post('/admin/users/{id}/role', [UserController::class, 'updateRole']);

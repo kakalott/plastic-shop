@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Product;
 use App\Models\Category; // Gọi Model Category
 use Illuminate\Http\Request;
@@ -10,6 +11,11 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
+        // Banner đang bật
+        $banners = Banner::where('is_active', 1)
+            ->orderBy('sort_order')
+            ->get();
+
         // 1. Lấy toàn bộ danh mục từ bảng categories để đổ ra Cột trái
         $categories = Category::all();
         
@@ -25,6 +31,6 @@ class ShopController extends Controller
         $products = $query->orderBy('id', 'desc')->get();
         
         // Gửi cả 2 biến $products và $categories ra ngoài Giao diện
-        return view('home', compact('products', 'categories'));
+        return view('home', compact('products', 'categories', 'banners'));
     }
 }

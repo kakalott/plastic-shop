@@ -57,25 +57,36 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('products.edit', compact('product'));
+        
+        // Phải lấy thêm toàn bộ danh mục để đổ ra Menu thả xuống
+        $categories = Category::all(); 
+        
+        // Ném cả biến $product và $categories sang Giao diện
+        // (Lưu ý đường dẫn view của bạn đang là products.edit như hình bạn gửi lúc nãy nhé)
+        return view('products.edit', compact('product', 'categories')); 
     }
 
     // Hàm 6: Nhận dữ liệu mới và Lưu đè vào Database TiDB
     public function update(Request $request, $id)
     {
-        // 1. Kiểm tra dữ liệu y như lúc Thêm mới
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'wholesale_price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
+            'category_id' => 'required|integer' // Bắt buộc phải có danh mục
         ]);
 
-        // 2. Tìm sản phẩm cũ và Cập nhật
         $product = Product::findOrFail($id);
-        $product->update($request->all());
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'sale_price' => $request->sale_price,
+            'stock_quantity' => $request->stock_quantity,
+            'image' => $request->image,
+            'category_id' => $request->category_id, // Lưu đè danh mục mới
+            'description' => $request->description,
+        ]);
 
-        // 3. Đá về trang Danh sách và báo thành công
-        return redirect('/admin/products')->with('success', 'Đã cập nhật thông tin đồ nhựa thành công!');
+        return redirect('/admin/products')->with('success', '📦 Đã cập nhật sản phẩm thành công!');
     }
 }

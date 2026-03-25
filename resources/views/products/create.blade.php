@@ -16,7 +16,7 @@
                             <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">🗂️ Phân loại Danh mục <span class="text-danger">*</span></label>
+                            <label class="form-label fw-bold"> Phân loại Danh mục <span class="text-danger">*</span></label>
                             <select name="category_id" class="form-select" required>
                                 <option value="">-- Click để chọn danh mục --</option>
         

@@ -11,6 +11,8 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
+
+    {
         // Banner đang bật
         $banners = Banner::where('is_active', 1)
             ->orderBy('sort_order')
@@ -19,18 +21,28 @@ class ShopController extends Controller
         // 1. Lấy toàn bộ danh mục từ bảng categories để đổ ra Cột trái
         $categories = Category::all();
         
-        // 2. Chuẩn bị câu lệnh lấy Sản phẩm
+        // ... (Các đoạn code lấy sản phẩm ở dưới bạn giữ nguyên nhé)
+        $categories = Category::all();
+        
+        // 2. Chuẩn bị câu lệnh lấy Sản phẩm (Chỉ lấy hàng còn trong kho)
         $query = Product::where('stock_quantity', '>', 0);
 
-        // 3. Xử lý TÌM KIẾM (Nếu khách có gõ vào ô tìm kiếm)
+        // 3. Xử lý TÌM KIẾM (Nếu khách gõ vào ô tìm kiếm)
         if ($request->has('search') && $request->search != '') {
             $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // 4. Xử lý LỌC DANH MỤC (ĐÂY LÀ PHẦN CHÚNG TA VỪA THÊM)
+        // Nếu trên thanh địa chỉ có chữ ?category=... thì lọc theo mã đó
+        if ($request->has('category') && $request->category != '') {
+            $query->where('category_id', $request->category);
         }
 
         // Thực thi câu lệnh và lấy dữ liệu
         $products = $query->orderBy('id', 'desc')->get();
         
-        // Gửi cả 2 biến $products và $categories ra ngoài Giao diện
+// Gửi các biến products, categories và banners ra ngoài Giao diện
         return view('home', compact('products', 'categories', 'banners'));
     }
+}
 }

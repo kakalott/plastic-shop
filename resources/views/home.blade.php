@@ -63,11 +63,13 @@
                      Danh Mục Sản Phẩm
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="/" class="text-decoration-none text-primary fw-bold">🌟 Tất Cả Sản Phẩm</a></li>
+                    <li class="list-group-item {{ !request('category') ? 'bg-light border-start border-primary border-4' : '' }}">
+                        <a href="/" class="text-decoration-none text-primary fw-bold"> Tất Cả Sản Phẩm</a>
+                    </li>
                     
                     @foreach($categories as $cat)
-                        <li class="list-group-item">
-                            <a href="#" class="text-decoration-none text-dark">{{ $cat->name }}</a>
+                        <li class="list-group-item {{ request('category') == $cat->id ? 'bg-light border-start border-primary border-4' : '' }}">
+                            <a href="/?category={{ $cat->id }}" class="text-decoration-none text-dark fw-bold">{{ $cat->name }}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -75,15 +77,17 @@
         </div>
 
         <div class="col-md-9">
+            
             <form action="/" method="GET" class="mb-4">
                 <div class="input-group shadow-sm">
                     <input type="text" name="search" class="form-control border-primary form-control-lg" placeholder="🔍 Bạn đang tìm rổ nhựa, tủ, hay hộp đựng thực phẩm?..." value="{{ request('search') }}">
                     <button type="submit" class="btn btn-primary fw-bold px-4">TÌM KIẾM</button>
                 </div>
             </form>
-            
+
             <div class="d-flex justify-content-between align-items-center mb-3">
-                
+                <h4 class="fw-bold"> Sản Phẩm Nổi Bật</h4>
+            </div>
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @forelse($products as $p)
@@ -105,17 +109,20 @@
 
                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                 <span class="text-muted" style="font-size: 0.85rem;">Kho: {{ $p->stock_quantity }}</span>
-                                <a href="/cart/add/{{ $p->id }}" class="btn btn-outline-primary btn-sm fw-bold">🛒 Thêm Giỏ</a>
+                                <a href="/cart/add/{{ $p->id }}" class="btn btn-outline-primary btn-sm fw-bold"> Thêm Giỏ</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="alert alert-warning text-center">Hiện tại kho đang trống, chưa có sản phẩm nào để bán!</div>
+                    <div class="alert alert-warning text-center">
+                        Không tìm thấy sản phẩm nào! Bạn thử tìm từ khóa khác xem sao.
+                    </div>
                 </div>
                 @endforelse
             </div>
+
         </div>
     </div>
 </div>

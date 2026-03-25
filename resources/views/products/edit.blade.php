@@ -14,7 +14,19 @@
                             <label class="form-label">Tên sản phẩm</label>
                             <input type="text" name="name" class="form-control" value="{{ $product->name }}" required>
                         </div>
-
+                        <div class="mb-4 p-3 bg-light rounded border">
+                            <label class="form-label fw-bold text-dark"> Phân loại Danh mục <span class="text-danger">*</span></label>
+                            <select name="category_id" class="form-select border-primary" required>
+                                <option value="">-- Vui lòng chọn danh mục cho sản phẩm --</option>
+                                
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat->id }}" {{ $product->category_id == $cat->id ? 'selected' : '' }}>
+                                        {{ $cat->name }}
+                                    </option>
+                                @endforeach
+                                
+                            </select>
+                        </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Giá bán lẻ (VNĐ)</label>

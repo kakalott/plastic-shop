@@ -53,4 +53,7 @@ Route::get('/checkout/payment/{id}', [CheckoutController::class, 'payment']);
     Route::post('/profile/orders/{id}/cancel', [ProfileController::class, 'cancelOrder']);
 });
 
+Route::get('/admin/login', [App\Http\Controllers\AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [App\Http\Controllers\AdminAuthController::class, 'login']);
+Route::post('/admin/logout', [App\Http\Controllers\AdminAuthController::class, 'logout'])->name('admin.logout');
 

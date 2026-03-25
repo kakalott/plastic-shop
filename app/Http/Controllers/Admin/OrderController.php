@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     // Xem danh sách toàn bộ đơn hàng
+    // Xem danh sách toàn bộ đơn hàng
     public function index()
     {
-        // Lấy đơn hàng mới nhất lên đầu, kèm thông tin người mua
-        $orders = Order::orderBy('id', 'desc')->get();
+        // Thêm `with('details.product')` để lôi luôn các món đồ và ảnh sản phẩm ra cho Popup
+        $orders = Order::with('details.product')->orderBy('id', 'desc')->get();
         return view('admin.orders.index', compact('orders'));
     }
 

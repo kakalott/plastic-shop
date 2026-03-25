@@ -54,3 +54,4 @@ Route::patch('/cart/update', [CartController::class, 'update']);
 Route::delete('/cart/remove', [CartController::class, 'remove']);
 // Trang Thanh Toán (Checkout)
 Route::get('/checkout', [CheckoutController::class, 'index']);
+// Xử lý đặt hàng

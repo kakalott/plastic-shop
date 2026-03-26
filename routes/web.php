@@ -9,6 +9,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\DashboardController;
 Route::get('/', [ShopController::class, 'index']);
 Auth::routes();
 
@@ -27,6 +28,8 @@ Route::put('/admin/products/{id}', [ProductController::class, 'update']); // B�
 // Quản lý Đơn hàng
     Route::get('/admin/orders', [OrderController::class, 'index']); // Xem danh sách
     Route::post('/admin/orders/{id}/status', [OrderController::class, 'updateStatus']);
+// Bảng điều khiển Thống kê (Dashboard)
+    Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index']);
     // Chỉnh sửa hồ sơ cá nhân
     Route::get('/profile/edit', [ProfileController::class, 'edit']); // Mở form
     Route::put('/profile/update', [ProfileController::class, 'update']); // Bấm lưu đè

@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand fw-bold text-primary" href="{{ url('/') }}">
                      Cửa Hàng Đồ Nhựa
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -37,18 +37,24 @@
                         </li>
 
                         @if(auth()->check() && auth()->user()->role === 'admin')
+                            
                             <li class="nav-item">
-                                <a class="nav-link text-primary fw-bold" href="/admin/products"> Quản Lý Kho Đồ Nhựa</a>
+                                <a class="nav-link text-primary fw-bold" href="/admin/dashboard">  Bảng Thống kê</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-primary fw-bold" href="/admin/products"> Quản Lý Kho</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-primary fw-bold" href="/admin/orders"> Quản Lý Đơn Hàng</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-primary fw-bold" href="/admin/users"> Quản Lý Tài Khoản</a>
+                                <a class="nav-link text-primary fw-bold" href="/admin/categories">Danh Mục</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-primary fw-bold" href="/admin/categories">Quản Lý Danh Mục</a>
+                                <a class="nav-link text-primary fw-bold" href="/admin/users"> Tài Khoản</a>
                             </li>
+                            
                         @else
                             <li class="nav-item">
                                 <a class="nav-link text-success fw-bold" href="/cart"> Giỏ Hàng <span class="badge bg-danger rounded-pill">{{ session('cart') ? count(session('cart')) : 0 }}</span></a>
@@ -80,11 +86,16 @@
                                          Thông tin của tôi
                                     </a>
                                     
+                                    @if(auth()->user()->role !== 'admin')
+                                    <a class="dropdown-item fw-bold text-success" href="/profile/orders">
+                                         Lịch sử đơn hàng
+                                    </a>
+                                    @endif
+                                    
                                     <hr class="dropdown-divider">
 
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                          {{ __('Logout') }}
                                     </a>
 
@@ -103,5 +114,7 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

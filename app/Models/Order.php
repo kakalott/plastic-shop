@@ -13,4 +13,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
+    // 1 Đơn hàng thuộc về 1 Người dùng
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

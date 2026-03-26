@@ -29,14 +29,14 @@ class ProductController extends Controller
         Product::create([
             'name' => $request->name,
             'price' => $request->price,
-            'sale_price' => $request->sale_price,
+            'wholesale_price' => $request->wholesale_price,
             'stock_quantity' => $request->stock_quantity,
             'image' => $request->image,
             'category_id' => $request->category_id, // Lưu ID danh mục vào DB
             'description' => $request->description,
         ]);
 
-        return redirect('/admin/products')->with('success', '📦 Đã thêm sản phẩm mới thành công!');
+        return redirect('/admin/products')->with('success', ' Đã thêm sản phẩm mới thành công!');
     }
     // Bổ sung Hàm 3: Hiển thị danh sách sản phẩm
     public function index()
@@ -80,13 +80,13 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->name,
             'price' => $request->price,
-            'sale_price' => $request->sale_price,
+            'wholesale_price' => $request->wholesale_price,
             'stock_quantity' => $request->stock_quantity,
             'image' => $request->image,
             'category_id' => $request->category_id, // Lưu đè danh mục mới
             'description' => $request->description,
         ]);
 
-        return redirect('/admin/products')->with('success', '📦 Đã cập nhật sản phẩm thành công!');
+        return redirect('/admin/products')->with('success', ' Đã cập nhật sản phẩm thành công!');
     }
 }

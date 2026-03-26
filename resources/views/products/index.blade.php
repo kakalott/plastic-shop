@@ -43,12 +43,12 @@
                             @endif
                         </td>
                         <td>
-                            <a href="/admin/products/{{ $p->id }}/edit" class="btn btn-warning btn-sm fw-bold text-dark">✏️ Sửa</a>
+                            <a href="/admin/products/{{ $p->id }}/edit" class="btn btn-warning btn-sm fw-bold text-dark"> Sửa</a>
                             
                             <form action="/admin/products/{{ $p->id }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi kho không?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm fw-bold">🗑️ Xóa</button>
+                                <button type="submit" class="btn btn-danger btn-sm fw-bold"> Xóa</button>
                             </form>
                         </td>
                     </tr>

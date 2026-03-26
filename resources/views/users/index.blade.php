@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2 class="fw-bold mb-4">👥 Quản Lý Phân Quyền Nhân Sự</h2>
+    <h2 class="fw-bold mb-4"> Quản Lý Phân Quyền Nhân Sự</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -32,9 +32,8 @@
                             <form action="/admin/users/{{ $user->id }}/role" method="POST" class="d-flex gap-2">
                                 @csrf
                                 <select name="role" class="form-select form-select-sm" {{ $user->id == auth()->id() ? 'disabled' : '' }}>
-                                    <option value="customer" {{ $user->role == 'customer' ? 'selected' : '' }}>Khách mua sỉ</option>
-                                    <option value="employee" {{ $user->role == 'employee' ? 'selected' : '' }}>Nhân viên POS</option>
-                                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin (Quản lý)</option>
+                                    <option value="customer" {{ $user->role == 'customer' ? 'selected' : '' }}>Khách hàng</option>
+                                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin </option>
                                 </select>
                                 
                                 @if($user->id != auth()->id())

@@ -54,7 +54,7 @@
                                             <div class="input-group input-group-sm" style="width: 120px;">
                                                 <input type="number" name="quantity" value="{{ $item->quantity }}" 
                                                        class="form-control text-center" min="1" max="{{ $item->product->stock_quantity }}">
-                                                <button type="submit" class="btn btn-outline-primary" title="Cập nhật số lượng">🔄</button>
+                                                <button type="submit" class="btn btn-outline-primary" title="Cập nhật số lượng">cập nhật</button>
                                             </div>
                                         </form>
                                     </div>
@@ -62,7 +62,7 @@
                                     <form action="/cart/remove" method="POST" class="m-0">
                                         @csrf @method('DELETE')
                                         <input type="hidden" name="cart_id" value="{{ $item->id }}">
-                                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Xóa món này">🗑️</button>
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Xóa món này">xóa</button>
                                     </form>
                                 </li>
                             @endforeach

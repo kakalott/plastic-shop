@@ -1,2 +1,2 @@
 # tmdtshop
-chekc
+check

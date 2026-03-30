@@ -10,6 +10,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\BannerController;
+
+
 Route::get('/', [ShopController::class, 'index']);
 Auth::routes();
 
@@ -37,6 +40,11 @@ Route::put('/admin/products/{id}', [ProductController::class, 'update']); // B�
     Route::get('/admin/categories', [\App\Http\Controllers\CategoryController::class, 'index']);
     Route::post('/admin/categories', [\App\Http\Controllers\CategoryController::class, 'store']);
     Route::delete('/admin/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
+    Route::get('/admin/banners', function () {
+    // Dấu chấm "." thay cho dấu gạch chéo "/" trong cấu trúc thư mục views
+    return view('admin.banners.index'); 
+});
+Route::resource('admin/banners', BannerController::class)->names('admin.banners');
     // Xem chi tiết Giỏ hàng
 Route::get('/cart', [CartController::class, 'index']);
 // Trang thông tin cá nhân của khách hàng
